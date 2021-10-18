@@ -13,4 +13,4 @@ spring:
     pool-name: ps-demo
     maximum-pool-size: 5000
     max-lifetime: 1800000
-    idle-timeout: 30000
+    idle-timeout: 50000
