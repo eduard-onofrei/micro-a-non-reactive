@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -20,22 +19,22 @@ public class Controller {
     private static final int COMPLEXITY = 1000000;
 
     @Autowired
-    private final AccountCrudRepository accountCrudRepository;
+    private final AccountCrudRepository accountRepository;
 
     @PostMapping
-    public Mono<Account> createAccount(@RequestBody @Valid Account account){
+    public Account createAccount(@RequestBody @Valid Account account){
         log.info("Request with {}", account);
-        return accountCrudRepository.save(account);
+        return accountRepository.save(account);
     }
 
     @GetMapping
-    public Flux<Account> getAccount(@RequestParam @Valid String owner){
-        return accountCrudRepository.findAllByOwner(owner)
-                .map(account -> {
-                    for(int i=0;i<COMPLEXITY;i++){
-                        account.setResult(account.getValue()*Math.random());
-                    }
-                    return account;
-                });
+    public List<Account> getAccount(@RequestParam @Valid String owner){
+        final List<Account> accounts = accountRepository.findAllByOwner(owner);
+        accounts.forEach(account -> {
+            for(int i=0;i<COMPLEXITY;i++){
+                account.setResult(account.getValue()*Math.random());
+            }
+        });
+        return accounts;
     }
 }

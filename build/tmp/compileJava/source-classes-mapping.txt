@@ -1,9 +1,7 @@
-uk/santander/MongoReactiveConfiguration.java
- uk.santander.MongoReactiveConfiguration
-uk/santander/MainApplication.java
- uk.santander.MainApplication
 uk/santander/AccountCrudRepository.java
  uk.santander.AccountCrudRepository
+uk/santander/MainApplication.java
+ uk.santander.MainApplication
 uk/santander/Account.java
  uk.santander.Account
 uk/santander/Controller.java

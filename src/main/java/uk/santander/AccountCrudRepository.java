@@ -1,14 +1,14 @@
 package uk.santander;
 
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Repository
 public interface AccountCrudRepository
-        extends ReactiveCrudRepository<Account, String> {
+        extends CrudRepository<Account, String> {
 
-    Flux<Account> findAllByValue(String value);
-    Flux<Account> findAllByOwner(String owner);
+    List<Account> findAllByValue(String value);
+    List<Account> findAllByOwner(String owner);
 }

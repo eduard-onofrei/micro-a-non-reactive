@@ -1,1 +1,16 @@
 server.port: 8080
+spring:
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/nonReactive"
+  datasource:
+    tomcat:
+      initial-size: 1000
+      max-wait: 20000
+      max-active: 5000
+  type: com.zaxxer.hikari.HikariDataSource
+  hikari:
+    pool-name: ps-demo
+    maximum-pool-size: 5000
+    max-lifetime: 1800000
+    idle-timeout: 30000
